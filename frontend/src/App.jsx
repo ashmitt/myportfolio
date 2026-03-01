@@ -1,14 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Button from './components/Button';
+import AboutSection from './components/AboutSection';
+import SkillsSection from './components/SkillsSection';
+import ProjectsSection from './components/ProjectsSection';
+import PrinciplesSection from './components/PrinciplesSection';
+import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div className="min-h-screen bg-background text-text-primary selection:bg-primary selection:text-background">
       <header className="p-6 fixed top-0 w-full z-50 backdrop-blur-md border-b border-text-secondary/10">
         <nav className="max-w-7xl mx-auto flex justify-between items-center">
-          <span className="font-bold text-xl tracking-tighter">Ashmit Rai</span>
-          <div className="space-x-8 text-sm text-text-secondary">
+          <span className="font-bold text-xl tracking-tighter cursor-pointer" onClick={() => window.scrollTo({ top: 0 })}>Ashmit Rai</span>
+          <div className="space-x-8 text-sm text-text-secondary hidden md:block">
             <a href="#about" className="hover:text-primary transition-colors">About</a>
+            <a href="#skills" className="hover:text-primary transition-colors">Skills</a>
             <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
             <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
           </div>
@@ -24,19 +32,19 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-[1.1] mb-6">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter leading-[1.1] mb-6 drop-shadow-lg">
                 Building Scalable <br />
-                <span className="text-primary">Digital Systems</span>
+                <span className="text-primary drop-shadow-[0_0_25px_rgba(0,255,255,0.4)]">Digital Systems</span>
               </h1>
-              <p className="text-xl text-text-secondary mb-10 max-w-lg">
+              <p className="text-xl text-text-secondary mb-10 max-w-lg font-medium">
                 MERN Stack Developer | Startup-Focused Engineer
               </p>
-              <div className="flex gap-4">
-                <a href="#projects" className="px-8 py-4 bg-primary text-background font-semibold rounded hover:bg-primary-hover transition-colors">
-                  View Projects
+              <div className="flex flex-wrap gap-4">
+                <a href="#projects">
+                  <Button variant="primary">View Projects</Button>
                 </a>
-                <a href="#contact" className="px-8 py-4 border border-text-secondary/30 rounded hover:border-primary hover:text-primary transition-colors">
-                  Contact Me
+                <a href="#contact">
+                  <Button variant="secondary">Contact Me</Button>
                 </a>
               </div>
             </motion.div>
@@ -45,16 +53,24 @@ function App() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="relative aspect-square flex items-center justify-center"
+              className="relative aspect-square flex items-center justify-center hidden md:flex"
             >
               {/* Abstract element */}
-              <div className="absolute w-full h-full max-w-[400px] max-h-[400px] rounded-full bg-primary/10 blur-[100px]" />
-              <div className="w-64 h-64 border border-primary/30 rounded-full animate-[spin_10s_linear_infinite]" />
-              <div className="absolute w-48 h-48 border border-primary/50 border-dashed rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+              <div className="absolute w-full h-full max-w-[500px] max-h-[500px] rounded-full bg-primary/10 blur-[120px]" />
+              <div className="w-[300px] h-[300px] border border-primary/20 rounded-full animate-[spin_12s_linear_infinite]" />
+              <div className="absolute w-[220px] h-[220px] border border-primary/40 border-dashed rounded-full animate-[spin_18s_linear_infinite_reverse]" />
             </motion.div>
           </div>
         </section>
+
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <PrinciplesSection />
+        <ContactSection />
       </main>
+
+      <Footer />
     </div>
   );
 }

@@ -34,39 +34,39 @@ Based on the Product Requirements Document (PRD), Design Document, and Tech Stac
   - Typography Header variants
 
 ## Phase 4: Frontend Sections (Single Page Scroll)
-- [ ] **Header / Navigation**: Fixed top header or floating nav indicating scroll position with smooth scroll anchor links.
-- [ ] **Hero Section**:
+- [x] **Header / Navigation**: Fixed top header or floating nav indicating scroll position with smooth scroll anchor links.
+- [x] **Hero Section**:
   - Implement full layout (Left: Big Text, Right: Abstract glow).
   - Add "Building Scalable Digital Systems" heading.
   - Add primary (cyan) and secondary CTA buttons.
   - Add subtle fade-in and parallax motion.
-- [ ] **About Section**:
+- [x] **About Section**:
   - Implement the "start-up narrative" grid layout.
   - Add "What I Build" and "What I'm Learning" stats grid.
-- [ ] **Skills / Tech Stack Section**:
+- [x] **Skills / Tech Stack Section**:
   - Build the grid of skills split by categories (Frontend, Backend, Core Concepts, Tools).
   - Add minimal icons and cyan hover effects.
-- [ ] **Featured Projects Section (Core Section)**:
+- [x] **Featured Projects Section (Core Section)**:
   - Build large project cards showcasing big screenshots.
   - Add tech stack badges, GitHub link, and Live Demo link.
   - Create the "View Case Study" expandable modal layout (Problem, Approach, Architecture, etc.).
   - Implement cyan border glow and slight zoom on project hover.
-- [ ] **"How I Think" Section**:
+- [x] **"How I Think" Section**:
   - List 4-6 engineering principles in a clean layout to emphasize structured problem-solving.
-- [ ] **Experience / Timeline Section**:
+- [x] **Experience / Timeline Section**:
   - Implement a vertical timeline with a cyan connecting line and minimal card blocks.
-- [ ] **Contact Section**:
+- [x] **Contact Section**:
   - Build the split layout (Left: Contact text + Socials, Right: Minimal contact form).
   - Connect form to backend API.
   - Add success/failure Toast notifications.
   - Clear the form state after a successful submission.
-- [ ] **Footer**:
+- [x] **Footer**:
   - Add social links, resume link, "Built with React & Express" text, and minimal branding.
 
 ## Phase 5: Polish & Animations (Framer Motion)
-- [ ] **Scroll Animations**: Add subtle section content reveal (fade-in sliding up) as the user scrolls.
-- [ ] **Micro-interactions**: Fine-tune hover glow on buttons, cyan underlines on links, and general interactivity.
-- [ ] **Responsiveness**: Audit every section on Mobile and Tablet viewports. Ensure seamless degradation to solitary columns.
+- [x] **Scroll Animations**: Add subtle section content reveal (fade-in sliding up) as the user scrolls.
+- [x] **Micro-interactions**: Fine-tune hover glow on buttons, cyan underlines on links, and general interactivity.
+- [x] **Responsiveness**: Audit every section on Mobile and Tablet viewports. Ensure seamless degradation to solitary columns.
 
 ## Phase 6: Performance & Launch Prep
 - [ ] **Performance Pass**:

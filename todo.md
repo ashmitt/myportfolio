@@ -69,12 +69,12 @@ Based on the Product Requirements Document (PRD), Design Document, and Tech Stac
 - [x] **Responsiveness**: Audit every section on Mobile and Tablet viewports. Ensure seamless degradation to solitary columns.
 
 ## Phase 6: Performance & Launch Prep
-- [ ] **Performance Pass**:
+- [x] **Performance Pass**:
   - Add lazy-loading to project images.
   - Ensure SEO meta tags are setup.
   - Minify and optimize assets.
-- [ ] **Testing**: Verify API rate limiting and CORS validation restrictions on form submission. Validate "no exposed API keys".
-- [ ] **Lighthouse Audit**: Test with Lighthouse targeting a score of ≥ 90 and load time < 2.5sec.
+- [x] **Testing**: Verify API rate limiting and CORS validation restrictions on form submission. Validate "no exposed API keys".
+- [x] **Lighthouse Audit**: Test with Lighthouse targeting a score of ≥ 90 and load time < 2.5sec.
 
 ## Phase 7: Deployment
 - [ ] **Deploy Backend**: Push Express app to **Render** and configure runtime environment variables securely.

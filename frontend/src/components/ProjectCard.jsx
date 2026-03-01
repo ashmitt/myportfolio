@@ -19,7 +19,7 @@ const ProjectCard = ({ project }) => {
                     {/* Placeholder for project screenshot. To be replaced with actual <img> */}
                     <div className="absolute inset-0 flex items-center justify-center text-text-secondary/30 text-sm group-hover:scale-105 transition-transform duration-700">
                         [16:9 Image Area]
-                        <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+                        <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#121820] via-transparent to-transparent pointer-events-none" />
                 </div>

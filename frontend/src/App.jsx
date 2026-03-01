@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import anime from 'animejs';
 import Button from './components/Button';
 import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
@@ -9,6 +10,31 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
 function App() {
+  const shape1Ref = useRef(null);
+  const shape2Ref = useRef(null);
+
+  useEffect(() => {
+    // Anime.js complex timeline animation for hero abstract shapes
+    anime({
+      targets: shape1Ref.current,
+      rotate: '1turn',
+      scale: [1, 1.1, 1],
+      easing: 'linear',
+      duration: 12000,
+      loop: true,
+    });
+
+    anime({
+      targets: shape2Ref.current,
+      rotate: '-1turn',
+      scale: [1, 0.9, 1],
+      opacity: [1, 0.6, 1],
+      easing: 'linear',
+      duration: 18000,
+      loop: true,
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-text-primary selection:bg-primary selection:text-background">
       <header className="p-6 fixed top-0 w-full z-50 backdrop-blur-md border-b border-text-secondary/10">
@@ -55,10 +81,10 @@ function App() {
               transition={{ duration: 1, delay: 0.2 }}
               className="relative aspect-square flex items-center justify-center hidden md:flex"
             >
-              {/* Abstract element */}
+              {/* Abstract element powered by Anime.js */}
               <div className="absolute w-full h-full max-w-[500px] max-h-[500px] rounded-full bg-primary/10 blur-[120px]" />
-              <div className="w-[300px] h-[300px] border border-primary/20 rounded-full animate-[spin_12s_linear_infinite]" />
-              <div className="absolute w-[220px] h-[220px] border border-primary/40 border-dashed rounded-full animate-[spin_18s_linear_infinite_reverse]" />
+              <div ref={shape1Ref} className="w-[300px] h-[300px] border border-primary/20 rounded-full" />
+              <div ref={shape2Ref} className="absolute w-[220px] h-[220px] border border-primary/40 border-dashed rounded-full" />
             </motion.div>
           </div>
         </section>

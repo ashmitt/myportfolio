@@ -12,7 +12,7 @@ export const projects = [
         tech: ['React', 'Node.js', 'Express', 'Tailwind CSS', 'Chart.js'],
         githubUrl: 'https://github.com/ashmitt',
         liveUrl: 'https://demo-link-placeholder.com',
-        image: '/assets/placeholder-project1.jpg',
+        image: '/assets/ecommerce.png',
         caseStudy: {
             problem: 'Vendors lacked a unified interface providing them real-time sales and inventory syncing without database caching lag.',
             approach: 'Built a lightweight internal API to sync JSON-based sales states across components instantly.',
@@ -27,7 +27,7 @@ export const projects = [
         tech: ['React', 'JavaScript', 'CSS Modules'],
         githubUrl: 'https://github.com/ashmitt',
         liveUrl: 'https://demo-link-placeholder.com',
-        image: '/assets/placeholder-project2.jpg',
+        image: '/assets/notes.png',
         caseStudy: {
             problem: 'Existing developer notes apps are bloated with features making quick ideation slow.',
             approach: 'Focused entirely on keyboard shortcuts and markdown rendering, stripping away unnecessary UI elements.',

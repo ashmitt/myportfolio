@@ -15,6 +15,17 @@ const AboutSection = () => {
                         <p>
                             By leveraging the MERN stack and modern tools, I develop digital products that are not just functioning prototypes but production-ready platforms.
                         </p>
+                        <div className="pt-4">
+                            <a
+                                href="/assets/resume.pdf"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-2 px-6 py-3 border border-primary/50 text-primary hover:bg-primary hover:text-background rounded transition-all font-medium"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+                                Download Resume
+                            </a>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-8">

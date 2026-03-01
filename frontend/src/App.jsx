@@ -33,9 +33,9 @@ function App() {
       y: () => Math.random() * 100,
       duration: () => Math.random() * 10000 + 10000,
       delay: () => Math.random() * 2000,
-      ease: 'linear',
+      easing: 'linear',
       loop: true,
-      direction: 'alternate',
+      alternate: true,
       update: () => {
         // React state-free canvas-like updates or just mapping to divs
       }

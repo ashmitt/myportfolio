@@ -24,7 +24,7 @@ const SkillsSection = () => {
                 translateY: [20, 0],
                 scale: [0.8, 1],
                 delay: stagger(40, { start: 300 }),
-                ease: 'outQuart',
+                easing: 'outQuart',
                 duration: 600
             });
 
@@ -33,7 +33,7 @@ const SkillsSection = () => {
                 animate(lineRef.current.querySelectorAll('path'), {
                     opacity: [0.1, 0.4, 0.1],
                     translateY: [0, -10, 0],
-                    ease: 'easeInOutSine',
+                    easing: 'easeInOutSine',
                     duration: 3000,
                     delay: stagger(200),
                     loop: true
@@ -43,10 +43,10 @@ const SkillsSection = () => {
             // Subtle floating effect for category cards
             animate(sectionRef.current.querySelectorAll('.category-card'), {
                 translateY: [-5, 5],
-                ease: 'easeInOutQuad',
+                easing: 'easeInOutQuad',
                 duration: 1500,
                 delay: stagger(150),
-                direction: 'alternate',
+                alternate: true,
                 loop: true
             });
         }

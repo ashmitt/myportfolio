@@ -12,12 +12,12 @@ const PrinciplesSection = () => {
         if (gridRef.current) {
             animate(gridRef.current.querySelectorAll('.flow-dot'), {
                 scale: [
-                    { to: 0.1, ease: 'inOutSine', duration: 500 },
-                    { to: 1.5, ease: 'inOutQuad', duration: 1200 }
+                    { to: 0.1, easing: 'inOutSine', duration: 500 },
+                    { to: 1.5, easing: 'inOutQuad', duration: 1200 }
                 ],
                 opacity: [
-                    { to: 0.1, ease: 'inOutSine', duration: 500 },
-                    { to: 0.6, ease: 'inOutQuad', duration: 1200 }
+                    { to: 0.1, easing: 'inOutSine', duration: 500 },
+                    { to: 0.6, easing: 'inOutQuad', duration: 1200 }
                 ],
                 delay: stagger(100, { grid: [15, 10], from: 'center' }),
                 alternate: true,

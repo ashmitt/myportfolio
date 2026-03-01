@@ -97,7 +97,7 @@ function App() {
               >
                 <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold uppercase tracking-tighter leading-[0.9] mb-8">
                   Building Scalable <br />
-                  <span className="text-transparent border-b-4 border-primary text-primary drop-shadow-[0_0_20px_rgba(0,255,255,0.3)]">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#00E5FF] border-b-4 border-primary/20 drop-shadow-[0_0_20px_rgba(0,255,255,0.2)]">
                     Digital Systems
                   </span>
                 </h1>

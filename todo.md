@@ -25,9 +25,9 @@ Based on the Product Requirements Document (PRD), Design Document, and Tech Stac
 - [x] **Environment Variables**: Hook up `.env` for email sending credentials and CORS allowed origins.
 
 ## Phase 3: Frontend Foundation & Architecture
-- [ ] **Global Styling**: Add dark-mode only base styles, generous spacing overrides, and soft inert-based smooth scrolling in CSS/Tailwind config.
-- [ ] **Data Setup**: Create a local structured JS/JSON file for Skills, Projects, and Experience data.
-- [ ] **Component Architecture**: Scaffold basic reusable UI components:
+- [x] **Global Styling**: Add dark-mode only base styles, generous spacing overrides, and soft inert-based smooth scrolling in CSS/Tailwind config.
+- [x] **Data Setup**: Create a local structured JS/JSON file for Skills, Projects, and Experience data.
+- [x] **Component Architecture**: Scaffold basic reusable UI components:
   - Cyan Accent Buttons
   - Tech Stack Badges
   - Project Cards

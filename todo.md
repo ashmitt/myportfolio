@@ -17,12 +17,12 @@ Based on the Product Requirements Document (PRD), Design Document, and Tech Stac
 - [x] **Typography Setup**: Import and configure a modern sans-serif font (e.g., Inter, Roboto).
 
 ## Phase 2: Backend Development (Small Express Service)
-- [ ] **Server Setup**: Set up the Express server structure (e.g., `server.js` or `app.js`).
-- [ ] **Security & Middleware**: Add CORS middleware, generic error handling, and basic rate limiting.
-- [ ] **Contact API Endpoint**: Create the `POST /api/contact` route.
-- [ ] **Form Validation**: Add input sanitization and validation for the contact form fields.
-- [ ] **Nodemailer Integration**: Configure Nodemailer to send an email upon successful valid POST request.
-- [ ] **Environment Variables**: Hook up `.env` for email sending credentials and CORS allowed origins.
+- [x] **Server Setup**: Set up the Express server structure (e.g., `server.js` or `app.js`).
+- [x] **Security & Middleware**: Add CORS middleware, generic error handling, and basic rate limiting.
+- [x] **Contact API Endpoint**: Create the `POST /api/contact` route.
+- [x] **Form Validation**: Add input sanitization and validation for the contact form fields.
+- [x] **Nodemailer Integration**: Configure Nodemailer to send an email upon successful valid POST request.
+- [x] **Environment Variables**: Hook up `.env` for email sending credentials and CORS allowed origins.
 
 ## Phase 3: Frontend Foundation & Architecture
 - [ ] **Global Styling**: Add dark-mode only base styles, generous spacing overrides, and soft inert-based smooth scrolling in CSS/Tailwind config.

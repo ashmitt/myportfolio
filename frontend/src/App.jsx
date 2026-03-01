@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import anime from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
 import Button from './components/Button';
 import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';

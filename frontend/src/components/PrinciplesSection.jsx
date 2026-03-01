@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import SectionHeading from './SectionHeading';
 import { principles } from '../data';
 import { motion } from 'framer-motion';
-import anime from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
 
 const PrinciplesSection = () => {
     const gridRef = useRef(null);

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import anime from 'animejs/lib/anime.es.js';
+import { animate } from 'animejs';
 import Button from './components/Button';
 import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
@@ -15,21 +15,19 @@ function App() {
 
   useEffect(() => {
     // Anime.js complex timeline animation for hero abstract shapes
-    anime({
-      targets: shape1Ref.current,
+    animate(shape1Ref.current, {
       rotate: '1turn',
       scale: [1, 1.1, 1],
-      easing: 'linear',
+      ease: 'linear',
       duration: 12000,
       loop: true,
     });
 
-    anime({
-      targets: shape2Ref.current,
+    animate(shape2Ref.current, {
       rotate: '-1turn',
       scale: [1, 0.9, 1],
       opacity: [1, 0.6, 1],
-      easing: 'linear',
+      ease: 'linear',
       duration: 18000,
       loop: true,
     });

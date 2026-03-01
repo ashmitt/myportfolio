@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import SectionHeading from './SectionHeading';
 import { principles } from '../data';
 import { motion } from 'framer-motion';
-import anime from 'animejs/lib/anime.es.js';
+import { animate, stagger } from 'animejs';
 
 const PrinciplesSection = () => {
     const gridRef = useRef(null);
@@ -10,18 +10,17 @@ const PrinciplesSection = () => {
     useEffect(() => {
         // Stunning 'data flow' wave animation on the background grid dots
         if (gridRef.current) {
-            anime({
-                targets: gridRef.current.querySelectorAll('.flow-dot'),
+            animate(gridRef.current.querySelectorAll('.flow-dot'), {
                 scale: [
-                    { value: 0.1, easing: 'easeOutSine', duration: 500 },
-                    { value: 1.5, easing: 'easeInOutQuad', duration: 1200 }
+                    { to: 0.1, ease: 'inOutSine', duration: 500 },
+                    { to: 1.5, ease: 'inOutQuad', duration: 1200 }
                 ],
                 opacity: [
-                    { value: 0.1, easing: 'easeOutSine', duration: 500 },
-                    { value: 0.6, easing: 'easeInOutQuad', duration: 1200 }
+                    { to: 0.1, ease: 'inOutSine', duration: 500 },
+                    { to: 0.6, ease: 'inOutQuad', duration: 1200 }
                 ],
-                delay: anime.stagger(100, { grid: [15, 10], from: 'center' }),
-                direction: 'alternate',
+                delay: stagger(100, { grid: [15, 10], from: 'center' }),
+                alternate: true,
                 loop: true
             });
         }

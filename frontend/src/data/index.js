@@ -1,7 +1,7 @@
 export const skills = {
-    frontend: ['React', 'JavaScript (ES6+)', 'Tailwind CSS', 'Framer Motion', 'HTML5', 'CSS3'],
-    backend: ['Node.js', 'Express', 'RESTful APIs', 'Authentication'],
-    core: ['System Design', 'Algorithms', 'Data Structures', 'Object-Oriented Programming'],
+    frontend: ['React', 'JavaScript (ES6+)', 'Tailwind CSS', 'Framer Motion', 'HTML5', 'CSS3', 'Python'],
+    backend: ['Node.js', 'Express', 'RESTful APIs', 'Authentication', 'MongoDB', 'MySQL', 'Django'],
+    core: ['System Design', 'Algorithms', 'Data Structures', 'Object-Oriented Programming', 'DBMS'],
     tools: ['Git', 'GitHub', 'Vite', 'Postman', 'Vercel', 'Render']
 };
 

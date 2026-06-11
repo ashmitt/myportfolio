@@ -23,7 +23,7 @@ const PrinciplesSection = () => {
                             viewport={{ once: true }}
                             className={`p-6 md:p-8 brutal-border brutal-shadow brutal-hover ${cardColors[idx % cardColors.length]}`}
                         >
-                            <span className="font-display text-4xl text-primary block mb-4 leading-none">
+                            <span className={`font-display text-4xl block mb-4 leading-none ${cardColors[idx % cardColors.length].includes('text-white') ? 'text-accent-alt' : 'text-primary'}`}>
                                 0{idx + 1}
                             </span>
                             <h3 className="font-display text-xl md:text-2xl uppercase mb-3">

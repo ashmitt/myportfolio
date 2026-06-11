@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, Instagram } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -22,22 +22,35 @@ const Footer = () => {
                         </a>
                         <a
                             href="https://github.com/ashmitt"
+                            target="_blank"
+                            rel="noreferrer"
                             aria-label="GitHub"
                             className="w-10 h-10 bg-background text-text-primary flex items-center justify-center brutal-border brutal-hover"
                         >
-                            <Github size={18} strokeWidth={2.5} />
+                            <Github size={18} strokeWidth={2.5} className="block" />
                         </a>
                         <a
-                            href="https://linkedin.com"
+                            href="https://linkedin.com/in/ashmit-rai"
+                            target="_blank"
+                            rel="noreferrer"
                             aria-label="LinkedIn"
                             className="w-10 h-10 bg-background text-text-primary flex items-center justify-center brutal-border brutal-hover"
                         >
-                            <Linkedin size={18} strokeWidth={2.5} />
+                            <Linkedin size={18} strokeWidth={2.5} className="block" />
+                        </a>
+                        <a
+                            href="https://instagram.com/ashm1t5"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="Instagram"
+                            className="w-10 h-10 bg-background text-text-primary flex items-center justify-center brutal-border brutal-hover"
+                        >
+                            <Instagram size={18} strokeWidth={2.5} className="block" />
                         </a>
                     </div>
 
                     <div className="text-xs font-bold uppercase tracking-widest text-background/60">
-                        Built with React + Express
+                        Designed &amp; Engineered by Ashmit Rai
                     </div>
                 </div>
             </div>

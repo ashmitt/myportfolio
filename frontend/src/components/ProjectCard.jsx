@@ -1,52 +1,75 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, X } from 'lucide-react';
+import { Github, ExternalLink, X, ArrowUpRight } from 'lucide-react';
 import TechBadge from './TechBadge';
 
 const ProjectCard = ({ project, index = 0 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const accentColors = ['bg-accent-alt', 'bg-accent text-white', 'bg-primary text-white'];
-    const accent = accentColors[index % accentColors.length];
+
+    const accentPairs = [
+        { card: 'bg-accent-alt', label: 'bg-primary text-white' },
+        { card: 'bg-accent text-white', label: 'bg-accent-alt text-text-primary' },
+    ];
+    const { card: cardBg, label: labelBg } = accentPairs[index % accentPairs.length];
+    const isWhiteText = cardBg.includes('text-white');
 
     return (
         <>
-            <div
-                role="button"
-                tabIndex={0}
-                onClick={() => setIsModalOpen(true)}
-                onKeyDown={(e) => e.key === 'Enter' && setIsModalOpen(true)}
-                className={`group w-full brutal-border brutal-shadow cursor-pointer brutal-hover ${accent}`}
-            >
-                <div className="h-[240px] w-full bg-background relative overflow-hidden brutal-border border-t-0 border-x-0">
+            {/* ── Card ─────────────────────────────────────────── */}
+            <div className={`group w-full brutal-border brutal-shadow ${cardBg}`}>
+
+                {/* Image block */}
+                <div className="relative w-full h-[220px] overflow-hidden brutal-border border-t-0 border-x-0">
                     <img
                         src={project.image}
                         alt={project.title}
                         loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-200"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-3 left-3 bg-text-primary text-background px-2 py-1 text-xs font-bold uppercase">
+                    {/* Index badge */}
+                    <span className="absolute top-3 left-3 bg-text-primary text-background px-2 py-1 text-xs font-bold uppercase tracking-wider">
                         0{index + 1}
-                    </div>
+                    </span>
+                    {/* Status badge */}
+                    <span className={`absolute top-3 right-3 px-2 py-1 text-xs font-bold uppercase tracking-wider brutal-border ${labelBg}`}>
+                        {project.status}
+                    </span>
                 </div>
 
+                {/* Body */}
                 <div className="p-6 md:p-8">
-                    <h3 className="font-display text-xl md:text-2xl uppercase mb-3">
-                        {project.title}
-                    </h3>
-                    <p className={`text-sm mb-5 leading-relaxed line-clamp-2 ${accent.includes('text-white') ? 'text-white/80' : 'text-text-secondary'}`}>
+                    {/* Title + subtitle */}
+                    <div className="mb-4">
+                        <p className={`text-xs font-bold uppercase tracking-[0.25em] mb-1 ${isWhiteText ? 'text-white/60' : 'text-text-secondary'}`}>
+                            {project.subtitle}
+                        </p>
+                        <h3 className="font-display text-2xl md:text-3xl uppercase leading-tight">
+                            {project.title}
+                        </h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className={`text-sm leading-relaxed mb-5 line-clamp-3 ${isWhiteText ? 'text-white/75' : 'text-text-secondary'}`}>
                         {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2 mb-5">
+                    {/* Tech badges */}
+                    <div className="flex flex-wrap gap-2 mb-6">
                         {project.tech.map((t) => (
                             <TechBadge key={t} outline>{t}</TechBadge>
                         ))}
                     </div>
 
+                    {/* Footer actions */}
                     <div className="flex justify-between items-center pt-4 brutal-border border-b-0 border-x-0">
-                        <span className="text-xs font-bold uppercase tracking-wider">
-                            Case Study →
-                        </span>
+                        <button
+                            type="button"
+                            onClick={() => setIsModalOpen(true)}
+                            className={`flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider brutal-hover ${isWhiteText ? 'text-white' : 'text-text-primary'}`}
+                        >
+                            Case Study <ArrowUpRight size={14} strokeWidth={2.5} className="block" />
+                        </button>
+
                         <div className="flex gap-3">
                             {project.githubUrl && (
                                 <a
@@ -54,10 +77,9 @@ const ProjectCard = ({ project, index = 0 }) => {
                                     target="_blank"
                                     rel="noreferrer"
                                     className="brutal-hover"
-                                    onClick={(e) => e.stopPropagation()}
                                     aria-label="GitHub"
                                 >
-                                    <Github size={20} strokeWidth={2.5} />
+                                    <Github size={20} strokeWidth={2.5} className="block" />
                                 </a>
                             )}
                             {project.liveUrl && (
@@ -66,10 +88,9 @@ const ProjectCard = ({ project, index = 0 }) => {
                                     target="_blank"
                                     rel="noreferrer"
                                     className="brutal-hover"
-                                    onClick={(e) => e.stopPropagation()}
                                     aria-label="Live site"
                                 >
-                                    <ExternalLink size={20} strokeWidth={2.5} />
+                                    <ExternalLink size={20} strokeWidth={2.5} className="block" />
                                 </a>
                             )}
                         </div>
@@ -77,44 +98,57 @@ const ProjectCard = ({ project, index = 0 }) => {
                 </div>
             </div>
 
+            {/* ── Modal ────────────────────────────────────────── */}
             <AnimatePresence>
                 {isModalOpen && (
                     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                        {/* Backdrop */}
                         <motion.div
-                            className="absolute inset-0 bg-text-primary/60"
+                            className="absolute inset-0 bg-text-primary/70"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsModalOpen(false)}
                         />
+
+                        {/* Panel */}
                         <motion.div
-                            className="bg-surface brutal-border brutal-shadow-lg w-full max-w-3xl max-h-[85vh] overflow-y-auto relative z-10"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 20 }}
-                            transition={{ duration: 0.2 }}
+                            className="bg-background brutal-border brutal-shadow-lg w-full max-w-3xl max-h-[88vh] overflow-y-auto relative z-10"
+                            initial={{ opacity: 0, y: 24, scale: 0.97 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 24, scale: 0.97 }}
+                            transition={{ duration: 0.2, ease: 'easeOut' }}
                         >
-                            <div className="sticky top-0 bg-accent-alt brutal-border border-t-0 border-x-0 p-4 flex justify-between items-center">
-                                <h2 className="font-display text-xl md:text-2xl uppercase">
-                                    {project.title}
-                                </h2>
+                            {/* Modal header */}
+                            <div className="sticky top-0 z-10 bg-accent-alt brutal-border border-t-0 border-x-0 px-6 py-4 flex justify-between items-center gap-4">
+                                <div>
+                                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-text-secondary mb-0.5">
+                                        {project.subtitle}
+                                    </p>
+                                    <h2 className="font-display text-xl md:text-2xl uppercase leading-tight">
+                                        {project.title}
+                                    </h2>
+                                </div>
                                 <button
                                     type="button"
                                     onClick={() => setIsModalOpen(false)}
-                                    className="w-10 h-10 brutal-border bg-surface flex items-center justify-center brutal-hover"
+                                    className="w-10 h-10 brutal-border bg-surface flex items-center justify-center p-0 leading-none brutal-hover shrink-0"
                                     aria-label="Close"
                                 >
-                                    <X size={20} strokeWidth={2.5} />
+                                    <X size={20} strokeWidth={2.5} className="block" />
                                 </button>
                             </div>
 
+                            {/* Modal body */}
                             <div className="p-6 md:p-10 space-y-8">
+                                {/* Tech stack */}
                                 <div className="flex flex-wrap gap-2">
                                     {project.tech.map((t) => (
                                         <TechBadge key={t} outline>{t}</TechBadge>
                                     ))}
                                 </div>
 
+                                {/* Case study sections */}
                                 {[
                                     { label: 'Problem', text: project.caseStudy?.problem },
                                     { label: 'Approach', text: project.caseStudy?.approach },
@@ -130,30 +164,36 @@ const ProjectCard = ({ project, index = 0 }) => {
                                     </div>
                                 ))}
 
+                                {/* Challenges / Future */}
                                 <div className="grid md:grid-cols-2 gap-4">
-                                    <div className="p-5 bg-accent-alt brutal-border">
-                                        <h4 className="font-bold uppercase text-xs tracking-widest mb-2">Challenges</h4>
+                                    <div className="p-5 bg-surface brutal-border">
+                                        <h4 className="font-bold uppercase text-xs tracking-widest mb-3">
+                                            Challenges
+                                        </h4>
                                         <p className="text-sm text-text-secondary leading-relaxed">
                                             {project.caseStudy?.challenges}
                                         </p>
                                     </div>
-                                    <div className="p-5 bg-background brutal-border">
-                                        <h4 className="font-bold uppercase text-xs tracking-widest mb-2">Future Scope</h4>
+                                    <div className="p-5 bg-accent-alt brutal-border">
+                                        <h4 className="font-bold uppercase text-xs tracking-widest mb-3">
+                                            Future Scope
+                                        </h4>
                                         <p className="text-sm text-text-secondary leading-relaxed">
                                             {project.caseStudy?.future}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="flex flex-wrap gap-3 pt-4">
+                                {/* CTA links */}
+                                <div className="flex flex-wrap gap-3 pt-2 brutal-border border-b-0 border-x-0">
                                     {project.liveUrl && (
                                         <a
                                             href={project.liveUrl}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="px-6 py-3 bg-primary text-white font-bold uppercase text-sm brutal-border brutal-shadow-sm brutal-hover"
+                                            className="flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold uppercase text-sm brutal-border brutal-shadow-sm brutal-hover"
                                         >
-                                            Live Site →
+                                            Live Site <ExternalLink size={14} strokeWidth={2.5} className="block" />
                                         </a>
                                     )}
                                     {project.githubUrl && (
@@ -161,9 +201,9 @@ const ProjectCard = ({ project, index = 0 }) => {
                                             href={project.githubUrl}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="px-6 py-3 bg-surface font-bold uppercase text-sm brutal-border brutal-shadow-sm brutal-hover"
+                                            className="flex items-center gap-2 px-6 py-3 bg-surface font-bold uppercase text-sm brutal-border brutal-shadow-sm brutal-hover"
                                         >
-                                            GitHub →
+                                            GitHub <Github size={14} strokeWidth={2.5} className="block" />
                                         </a>
                                     )}
                                 </div>

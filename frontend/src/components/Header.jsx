@@ -117,14 +117,14 @@ const Header = () => {
                                 exit={{ opacity: 0, rotate: 90 }}
                                 transition={{ duration: 0.2 }}
                                 onClick={() => setIsMenuOpen((open) => !open)}
-                                className="w-9 h-9 brutal-border bg-surface brutal-shadow-sm brutal-hover flex items-center justify-center"
+                                className="w-9 h-9 brutal-border bg-surface brutal-shadow-sm brutal-hover flex items-center justify-center p-0 leading-none shrink-0"
                                 aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                                 aria-expanded={isMenuOpen}
                             >
                                 {isMenuOpen ? (
-                                    <X size={18} strokeWidth={2.5} />
+                                    <X size={18} strokeWidth={2.5} className="block" />
                                 ) : (
-                                    <Menu size={18} strokeWidth={2.5} />
+                                    <Menu size={18} strokeWidth={2.5} className="block" />
                                 )}
                             </motion.button>
                         )}

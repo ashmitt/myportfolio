@@ -86,7 +86,7 @@ const AboutSection = () => {
                                 className={`p-6 md:p-8 brutal-border brutal-shadow ${stat.accent} ${stat.wide ? 'col-span-2' : ''} brutal-hover`}
                             >
                                 <motion.span
-                                    className={`font-display text-3xl md:text-4xl block mb-2 leading-none ${stat.accent.includes('text-white') ? '' : 'text-text-primary'}`}
+                                    className={`font-display text-2xl md:text-4xl block mb-2 leading-tight break-words ${stat.accent.includes('text-white') ? '' : 'text-text-primary'}`}
                                     initial={{ opacity: 0, y: 8 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}

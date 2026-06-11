@@ -1,12 +1,13 @@
 import React from 'react';
 
 const Button = ({ children, variant = 'primary', className = '', ...props }) => {
-    const baseStyles = "px-8 py-4 font-semibold rounded transition-colors duration-300 inline-block text-center";
+    const baseStyles = "px-6 py-3 font-bold uppercase tracking-wider text-sm brutal-border brutal-shadow-sm brutal-hover inline-block text-center cursor-pointer";
 
     const variants = {
-        primary: "bg-primary text-background hover:bg-primary-hover shadow-[0_0_15px_rgba(0,255,255,0.15)] hover:shadow-[0_0_25px_rgba(0,255,255,0.4)]",
-        secondary: "border border-text-secondary/30 hover:border-primary hover:text-primary backdrop-blur-sm",
-        ghost: "text-text-secondary hover:text-primary transition-colors"
+        primary: "bg-primary text-white border-border hover:bg-primary-hover",
+        secondary: "bg-surface text-text-primary",
+        accent: "bg-accent-alt text-text-primary",
+        ghost: "bg-transparent text-text-primary shadow-none border-transparent underline-offset-4 hover:underline",
     };
 
     return (

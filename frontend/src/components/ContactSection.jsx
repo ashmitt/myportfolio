@@ -4,6 +4,12 @@ import Button from './Button';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const socialLinks = [
+    { href: 'mailto:ashmit@example.com', icon: Mail, label: 'ashmit@example.com' },
+    { href: 'https://linkedin.com', icon: Linkedin, label: 'LinkedIn' },
+    { href: 'https://github.com/ashmitt', icon: Github, label: 'GitHub' },
+];
+
 const ContactSection = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState({ type: '', message: '' });
@@ -19,67 +25,71 @@ const ContactSection = () => {
         try {
             const response = await fetch('http://localhost:5000/api/contact', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
 
             const data = await response.json();
 
             if (response.ok) {
-                setStatus({ type: 'success', message: 'Message sent successfully!' });
+                setStatus({ type: 'success', message: 'Message sent! I\'ll get back to you soon.' });
                 setFormData({ name: '', email: '', message: '' });
                 setTimeout(() => setStatus({ type: '', message: '' }), 5000);
             } else {
                 setStatus({ type: 'error', message: data.error || 'Something went wrong.' });
             }
-        } catch (error) {
+        } catch {
             setStatus({ type: 'error', message: 'Failed to connect to the server.' });
         }
         setLoading(false);
     };
 
+    const inputClass = "w-full bg-background brutal-border px-4 py-3 text-text-primary font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 placeholder:text-text-secondary/50";
+
     return (
-        <section id="contact" className="py-24 px-6 md:py-32 border-t border-text-secondary/10 relative">
-            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+        <section id="contact" className="py-20 md:py-28 px-4 md:px-6 brutal-border border-x-0 bg-surface">
+            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16">
                 <div>
-                    <SectionHeading pretitle="Next Steps" className="mb-8">Let's Build Something Meaningful.</SectionHeading>
-                    <p className="text-lg text-text-secondary mb-12 max-w-md">
-                        I'm currently looking for new opportunities and collaborations. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                    <SectionHeading pretitle="Contact" number="05" className="mb-8">
+                        Let's Build<br />Something.
+                    </SectionHeading>
+                    <p className="text-text-secondary mb-10 max-w-md leading-relaxed">
+                        Open to new opportunities and collaborations. Have a project in mind
+                        or just want to say hi? Drop me a message.
                     </p>
 
-                    <div className="space-y-6">
-                        <a href="mailto:ashmit@example.com" className="flex items-center gap-4 text-text-secondary hover:text-primary transition-colors w-fit group">
-                            <div className="w-12 h-12 rounded-full border border-text-secondary/20 flex items-center justify-center bg-[#1A222C] group-hover:border-primary transition-colors">
-                                <Mail size={20} />
-                            </div>
-                            <span className="text-lg">ashmit@example.com</span>
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-text-secondary hover:text-primary transition-colors w-fit group">
-                            <div className="w-12 h-12 rounded-full border border-text-secondary/20 flex items-center justify-center bg-[#1A222C] group-hover:border-primary transition-colors">
-                                <Linkedin size={20} />
-                            </div>
-                            <span className="text-lg">LinkedIn</span>
-                        </a>
-                        <a href="https://github.com/ashmitt" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-text-secondary hover:text-primary transition-colors w-fit group">
-                            <div className="w-12 h-12 rounded-full border border-text-secondary/20 flex items-center justify-center bg-[#1A222C] group-hover:border-primary transition-colors">
-                                <Github size={20} />
-                            </div>
-                            <span className="text-lg">GitHub</span>
-                        </a>
+                    <div className="space-y-4">
+                        {socialLinks.map(({ href, icon: Icon, label }) => (
+                            <a
+                                key={label}
+                                href={href}
+                                target={href.startsWith('http') ? '_blank' : undefined}
+                                rel="noreferrer"
+                                className="flex items-center gap-4 group brutal-hover w-fit"
+                            >
+                                <div className="w-12 h-12 brutal-border bg-accent-alt flex items-center justify-center brutal-shadow-sm group-hover:bg-primary group-hover:text-white transition-colors duration-100">
+                                    <Icon size={20} strokeWidth={2.5} />
+                                </div>
+                                <span className="font-bold text-sm uppercase tracking-wider">
+                                    {label}
+                                </span>
+                            </a>
+                        ))}
                     </div>
                 </div>
 
                 <motion.div
-                    initial={{ opacity: 0, x: 20 }}
+                    initial={{ opacity: 0, x: 16 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="bg-[#1A222C] p-8 md:p-10 rounded-2xl border border-text-secondary/10"
+                    transition={{ duration: 0.3 }}
+                    className="brutal-border brutal-shadow bg-background p-6 md:p-8"
                 >
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2">Name</label>
+                            <label htmlFor="name" className="block text-xs font-bold uppercase tracking-widest mb-2">
+                                Name
+                            </label>
                             <input
                                 type="text"
                                 id="name"
@@ -87,12 +97,14 @@ const ContactSection = () => {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full bg-[#0B0F14] border border-text-secondary/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
-                                placeholder="John Doe"
+                                className={inputClass}
+                                placeholder="Your name"
                             />
                         </div>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">Email</label>
+                            <label htmlFor="email" className="block text-xs font-bold uppercase tracking-widest mb-2">
+                                Email
+                            </label>
                             <input
                                 type="email"
                                 id="email"
@@ -100,12 +112,14 @@ const ContactSection = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full bg-[#0B0F14] border border-text-secondary/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
-                                placeholder="john@example.com"
+                                className={inputClass}
+                                placeholder="you@email.com"
                             />
                         </div>
                         <div>
-                            <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2">Message</label>
+                            <label htmlFor="message" className="block text-xs font-bold uppercase tracking-widest mb-2">
+                                Message
+                            </label>
                             <textarea
                                 id="message"
                                 name="message"
@@ -113,17 +127,17 @@ const ContactSection = () => {
                                 onChange={handleChange}
                                 required
                                 rows={5}
-                                className="w-full bg-[#0B0F14] border border-text-secondary/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors resize-none"
+                                className={`${inputClass} resize-none`}
                                 placeholder="Tell me about your project..."
                             />
                         </div>
 
-                        <Button type="submit" className="w-full" disabled={loading}>
-                            {loading ? 'Sending...' : 'Start a Conversation'}
+                        <Button type="submit" className="w-full py-4" disabled={loading}>
+                            {loading ? 'Sending...' : 'Send Message →'}
                         </Button>
 
                         {status.message && (
-                            <div className={`p-4 rounded-lg mt-4 text-sm font-medium ${status.type === 'success' ? 'bg-green-500/10 text-green-400' : 'bg-red-500/10 text-red-400'}`}>
+                            <div className={`p-4 brutal-border text-sm font-bold uppercase tracking-wide ${status.type === 'success' ? 'bg-accent-alt' : 'bg-primary text-white'}`}>
                                 {status.message}
                             </div>
                         )}

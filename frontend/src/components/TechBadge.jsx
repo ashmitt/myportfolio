@@ -1,20 +1,26 @@
 import React from 'react';
 
-const TechBadge = ({ children, outline = false }) => {
+const TechBadge = ({ children, outline = false, accent = false }) => {
     if (outline) {
         return (
-            <span className="px-3 py-1 text-xs border border-primary/20 text-text-secondary rounded-full tracking-wide">
+            <span className="px-2 py-0.5 text-xs font-bold uppercase tracking-wide brutal-border bg-surface">
+                {children}
+            </span>
+        );
+    }
+
+    if (accent) {
+        return (
+            <span className="px-3 py-1.5 text-xs font-bold uppercase tracking-wide bg-accent-alt brutal-border">
                 {children}
             </span>
         );
     }
 
     return (
-        <div className="px-4 py-3 bg-text-secondary/5 border border-text-secondary/10 rounded-lg text-sm text-text-secondary hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all text-center flex items-center justify-center cursor-default group">
-            <span className="group-hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] transition-all">
-                {children}
-            </span>
-        </div>
+        <span className="px-3 py-2 text-xs font-bold uppercase tracking-wide bg-surface brutal-border brutal-shadow-sm brutal-hover inline-block">
+            {children}
+        </span>
     );
 };
 

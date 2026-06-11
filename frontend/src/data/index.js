@@ -7,12 +7,7 @@ export const marqueeItems = [
     'PERFORMANCE • SECURITY • RELIABILITY',
 ];
 
-export const skills = {
-    frontend: ['React', 'JavaScript (ES6+)', 'Tailwind CSS', 'Framer Motion', 'HTML5', 'CSS3', 'Python'],
-    backend: ['Node.js', 'Express', 'RESTful APIs', 'Authentication', 'MongoDB', 'MySQL', 'Django'],
-    core: ['System Design', 'Algorithms', 'Data Structures', 'OOP', 'DBMS'],
-    tools: ['Git', 'GitHub', 'Vite', 'Postman', 'Vercel', 'Render'],
-};
+export { skillCategories } from './skills';
 
 export const projects = [
     {

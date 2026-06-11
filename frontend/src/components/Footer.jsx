@@ -13,6 +13,7 @@ const Footer = () => {
                     <div className="flex items-center gap-4">
                         <a
                             href="/assets/resume.pdf"
+                            download="Ashmit_Rai_Resume.pdf"
                             target="_blank"
                             rel="noreferrer"
                             className="px-4 py-2 bg-accent-alt text-text-primary text-xs font-bold uppercase brutal-border brutal-shadow-sm brutal-hover"

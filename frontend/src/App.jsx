@@ -7,13 +7,15 @@ import ProjectsSection from './components/ProjectsSection';
 import PrinciplesSection from './components/PrinciplesSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import Header from './components/Header';
+import LoadingScreen from './components/LoadingScreen';
 import { marqueeItems } from './data';
 
 function App() {
     const [isLoading, setIsLoading] = React.useState(true);
 
     useEffect(() => {
-        const timer = setTimeout(() => setIsLoading(false), 600);
+        const timer = setTimeout(() => setIsLoading(false), 4200);
         return () => clearTimeout(timer);
     }, []);
 
@@ -26,27 +28,34 @@ function App() {
         },
     };
 
-    const navLinks = [
-        { href: '#about', label: 'About' },
-        { href: '#skills', label: 'Skills' },
-        { href: '#projects', label: 'Work' },
-        { href: '#contact', label: 'Contact' },
-    ];
+    const nameLetters = 'ASHMIT'.split('');
+
+    const brutalLetter = (i) => ({
+        hidden: {
+            opacity: 0,
+            y: 80,
+            x: i % 2 === 0 ? -30 : 30,
+            rotate: i % 2 === 0 ? -8 : 8,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            x: 0,
+            rotate: 0,
+            transition: {
+                type: 'spring',
+                stiffness: 650,
+                damping: 11,
+                mass: 0.7,
+                delay: 0.35 + i * 0.07,
+            },
+        },
+    });
 
     return (
         <div className="min-h-screen bg-background text-text-primary overflow-x-hidden">
-            <AnimatePresence>
-                {isLoading && (
-                    <motion.div
-                        initial={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center gap-6"
-                    >
-                        <div className="w-16 h-16 brutal-border bg-accent-alt brutal-shadow animate-pulse" />
-                        <span className="font-display text-2xl uppercase tracking-tight">Loading</span>
-                    </motion.div>
-                )}
+            <AnimatePresence mode="wait">
+                {isLoading && <LoadingScreen key="loader" />}
             </AnimatePresence>
 
             {/* Marquee strip */}
@@ -60,34 +69,7 @@ function App() {
                 </div>
             </div>
 
-            <header className="pt-10 px-4 md:px-6 fixed top-0 w-full z-50 bg-background brutal-border border-t-0 border-x-0">
-                <nav className="max-w-7xl mx-auto flex justify-between items-center py-4">
-                    <button
-                        type="button"
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                        className="font-display text-lg md:text-xl uppercase tracking-tight brutal-hover bg-accent-alt px-3 py-1 brutal-border brutal-shadow-sm"
-                    >
-                        AR
-                    </button>
-                    <div className="hidden md:flex gap-2">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.href}
-                                href={link.href}
-                                className="px-4 py-2 text-xs font-bold uppercase tracking-wider brutal-border bg-surface brutal-shadow-sm brutal-hover"
-                            >
-                                {link.label}
-                            </a>
-                        ))}
-                    </div>
-                    <a
-                        href="#contact"
-                        className="md:hidden px-3 py-2 text-xs font-bold uppercase brutal-border bg-primary text-white brutal-shadow-sm"
-                    >
-                        Hire Me
-                    </a>
-                </nav>
-            </header>
+            <Header />
 
             <main>
                 <section className="min-h-screen flex items-center relative px-4 md:px-6 pt-32 pb-16 grid-bg">
@@ -105,17 +87,85 @@ function App() {
                             </div>
 
                             <h1 className="font-display text-[clamp(3rem,12vw,9rem)] uppercase leading-[0.85] tracking-tight mb-6">
-                                Ashmit
+                                <span className="inline-flex">
+                                    {nameLetters.map((letter, i) => (
+                                        <motion.span
+                                            key={i}
+                                            className="inline-block"
+                                            initial="hidden"
+                                            animate={!isLoading ? 'visible' : 'hidden'}
+                                            variants={brutalLetter(i)}
+                                            whileHover={{
+                                                y: -6,
+                                                rotate: i % 2 === 0 ? -4 : 4,
+                                                transition: { type: 'spring', stiffness: 800, damping: 8 },
+                                            }}
+                                        >
+                                            {letter}
+                                        </motion.span>
+                                    ))}
+                                </span>
                                 <br />
-                                <span className="bg-accent-alt px-2 inline-block brutal-border mt-1">Rai</span>
+                                <motion.span
+                                    className="bg-accent-alt px-2 inline-block brutal-border mt-1"
+                                    initial={{ opacity: 0, x: 120, y: 60, rotate: 12, scale: 0.6 }}
+                                    animate={!isLoading ? {
+                                        opacity: 1,
+                                        x: 0,
+                                        y: 0,
+                                        rotate: 0,
+                                        scale: 1,
+                                        boxShadow: [
+                                            '6px 6px 0 0 #0A0A0A',
+                                            '10px 10px 0 0 #0A0A0A',
+                                            '6px 6px 0 0 #0A0A0A',
+                                        ],
+                                    } : {}}
+                                    transition={{
+                                        opacity: { duration: 0.1, delay: 0.85 },
+                                        x: { type: 'spring', stiffness: 700, damping: 10, delay: 0.85 },
+                                        y: { type: 'spring', stiffness: 700, damping: 10, delay: 0.85 },
+                                        rotate: { type: 'spring', stiffness: 700, damping: 10, delay: 0.85 },
+                                        scale: { type: 'spring', stiffness: 700, damping: 10, delay: 0.85 },
+                                        boxShadow: { duration: 0.15, repeat: 2, delay: 1.1 },
+                                    }}
+                                    whileHover={{
+                                        x: [0, -6, 6, -3, 0],
+                                        rotate: [0, -3, 3, 0],
+                                        transition: { duration: 0.25 },
+                                    }}
+                                >
+                                    <motion.span
+                                        animate={{ x: [0, 2, -2, 0] }}
+                                        transition={{ repeat: Infinity, duration: 0.3, repeatDelay: 4, ease: 'linear' }}
+                                        className="inline-block"
+                                    >
+                                        RAI
+                                    </motion.span>
+                                </motion.span>
                             </h1>
 
-                            <p className="text-base md:text-xl max-w-xl mb-10 leading-relaxed border-l-4 border-primary pl-4">
-                                
+                            <motion.p
+                                className="text-base md:text-lg max-w-xl mb-10 leading-relaxed bg-surface text-text-primary px-5 py-4 brutal-border brutal-shadow-sm"
+                                initial={{ opacity: 0, y: 24, x: -16 }}
+                                animate={!isLoading ? {
+                                    opacity: 1,
+                                    y: 0,
+                                    x: 0,
+                                    boxShadow: '4px 4px 0 0 #0A0A0A',
+                                } : {}}
+                                transition={{ duration: 0.45, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                                whileHover={{
+                                    y: -3,
+                                    x: -2,
+                                    boxShadow: '8px 8px 0 0 #0A0A0A',
+                                    transition: { duration: 0.15 },
+                                }}
+                            >
                                 I build scalable web applications and AI-powered systems.
                                 From backend architecture to deployment, I focus on
                                 performance, reliability, and real-world usability.
-                            </p>
+                            </motion.p>
 
                             <div className="flex flex-wrap gap-4">
                                 <a href="#projects">

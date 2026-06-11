@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import SectionHeading from './SectionHeading';
 
 const stats = [
-    { value: '10+', label: 'Projects Built', accent: 'bg-accent-alt' },
-    { value: 'MERN', label: 'Core Stack', accent: 'bg-accent' },
-    { value: 'AI & Systems', label: 'Current Focus', accent: 'bg-primary text-white', wide: true },
+    { value: 'CS Undergrad', label: 'Computer Science', accent: 'bg-accent-alt' },
+    { value: 'Python Ecosystem', label: 'Core Stack · Django · FastAPI · PostgreSQL', accent: 'bg-accent' },
+    { value: 'Backend & AI', label: 'Current Focus', accent: 'bg-primary text-white', wide: true },
 ];
 
 const textContainer = {
@@ -58,22 +58,63 @@ const AboutSection = () => {
                         viewport={{ once: true, margin: '-80px' }}
                     >
                         <motion.p className="text-base md:text-lg" variants={fadeLeft}>
-                            I'm a software engineer focused on designing and building scalable applications.
-                            My work goes beyond writing code — I care about architecture, system performance,
-                            and the end-user experience.
+                            Results-driven Software Developer with hands-on experience building and deploying
+                            full-stack web applications using Python, Django, React, PostgreSQL, and cloud
+                            deployment technologies. Skilled in RESTful API development, CI/CD automation,
+                            Docker-based deployments, and backend system design, with a strong focus on writing
+                            scalable and maintainable software.
                         </motion.p>
                         <motion.p className="text-base md:text-lg" variants={fadeLeft}>
-                            Using the MERN stack and modern tooling, I ship digital products that aren't
-                            prototypes — they're production-ready platforms built to last.
+                            Currently pursuing a B.Tech in Computer Science and Engineering at Swami Vivekananda
+                            University (Expected 2028) while expanding expertise in software engineering and
+                            AI-powered applications.
                         </motion.p>
+                    </motion.div>
+
+                    <motion.div
+                        className="grid grid-cols-2 gap-4"
+                        variants={statsContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: '-80px' }}
+                    >
+                        {stats.map((stat, idx) => (
+                            <motion.div
+                                key={stat.label}
+                                variants={fadeUp}
+                                whileHover={{ y: -4, transition: { duration: 0.15 } }}
+                                className={`p-6 md:p-8 brutal-border brutal-shadow ${stat.accent} ${stat.wide ? 'col-span-2' : ''} brutal-hover`}
+                            >
+                                <motion.span
+                                    className={`font-display text-3xl md:text-4xl block mb-2 leading-none ${stat.accent.includes('text-white') ? '' : 'text-text-primary'}`}
+                                    initial={{ opacity: 0, y: 8 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.35, delay: 0.15 + idx * 0.1 }}
+                                >
+                                    {stat.value}
+                                </motion.span>
+                                <motion.span
+                                    className={`text-xs font-bold uppercase tracking-widest block ${stat.accent.includes('text-white') ? 'text-white/80' : 'text-text-secondary'}`}
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.3, delay: 0.25 + idx * 0.1 }}
+                                >
+                                    {stat.label}
+                                </motion.span>
+                            </motion.div>
+                        ))}
+
                         <motion.a
                             href="/assets/resume.pdf"
+                            download="Ashmit_Rai_Resume.pdf"
                             target="_blank"
                             rel="noreferrer"
-                            variants={fadeLeft}
-                            whileHover={{ x: 4, transition: { duration: 0.15 } }}
+                            variants={fadeUp}
+                            whileHover={{ y: -4, transition: { duration: 0.15 } }}
                             whileTap={{ scale: 0.97 }}
-                            className="inline-flex items-center gap-3 px-6 py-3 bg-text-primary text-background font-bold uppercase text-sm tracking-wider brutal-border brutal-shadow-sm brutal-hover mt-4"
+                            className="col-span-2 flex items-center justify-center gap-3 px-6 py-4 bg-text-primary text-background font-bold uppercase text-sm tracking-wider brutal-border brutal-shadow brutal-hover"
                         >
                             <motion.svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -93,36 +134,6 @@ const AboutSection = () => {
                             </motion.svg>
                             Download Resume
                         </motion.a>
-                    </motion.div>
-
-                    <motion.div
-                        className="grid grid-cols-2 gap-4"
-                        variants={statsContainer}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: '-80px' }}
-                    >
-                        {stats.map((stat) => (
-                            <motion.div
-                                key={stat.label}
-                                variants={fadeUp}
-                                whileHover={{ y: -4, transition: { duration: 0.15 } }}
-                                className={`p-6 md:p-8 brutal-border brutal-shadow ${stat.accent} ${stat.wide ? 'col-span-2' : ''} brutal-hover`}
-                            >
-                                <motion.span
-                                    className={`font-display text-3xl md:text-4xl block mb-2 leading-none ${stat.accent.includes('text-white') ? '' : 'text-text-primary'}`}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.35, delay: 0.25 }}
-                                >
-                                    {stat.value}
-                                </motion.span>
-                                <span className={`text-xs font-bold uppercase tracking-widest ${stat.accent.includes('text-white') ? 'text-white/80' : 'text-text-secondary'}`}>
-                                    {stat.label}
-                                </span>
-                            </motion.div>
-                        ))}
                     </motion.div>
                 </div>
             </div>
